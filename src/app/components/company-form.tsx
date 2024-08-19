@@ -30,7 +30,7 @@ export interface CompanyFormProps {
   onSubmit: (values: CompanyFieldValues) => void | Promise<void>;
 }
 
-export default function CompanyForm({ onSubmit }: CompanyFormProps) {
+const CompanyForm = ({ onSubmit }: CompanyFormProps) => {
   return (
     <Formik initialValues={initialValues} onSubmit={onSubmit}>
       <Form className="flex flex-col gap-10">
@@ -60,4 +60,6 @@ export default function CompanyForm({ onSubmit }: CompanyFormProps) {
       </Form>
     </Formik>
   );
-}
+};
+
+export default CompanyForm;

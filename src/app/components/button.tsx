@@ -9,7 +9,7 @@ export interface ButtonProps
   disabled?: boolean;
 }
 
-export default function Button({ disabled, ...rest }: ButtonProps) {
+const Button = ({ disabled, ...rest }: ButtonProps) => {
   return (
     <button
       {...rest}
@@ -20,4 +20,6 @@ export default function Button({ disabled, ...rest }: ButtonProps) {
       )}
     />
   );
-}
+};
+
+export default Button;

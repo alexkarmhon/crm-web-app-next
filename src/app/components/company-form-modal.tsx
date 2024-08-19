@@ -9,13 +9,12 @@ export interface CompanyFormModalProps extends ModalProps {
   onSubmit: CompanyFormProps['onSubmit'];
 }
 
-export default function CompanyFormModal({
-  onSubmit,
-  ...rest
-}: CompanyFormModalProps) {
+const CompanyFormModal = ({ onSubmit, ...rest }: CompanyFormModalProps) => {
   return (
     <Modal {...rest}>
       <CompanyForm onSubmit={onSubmit} />
     </Modal>
   );
-}
+};
+
+export default CompanyFormModal;
