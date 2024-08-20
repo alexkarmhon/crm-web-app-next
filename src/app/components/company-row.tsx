@@ -3,6 +3,7 @@ import React from 'react';
 import StatusLabel, { Status } from '@/app/components/status-label';
 import clsx from 'clsx';
 import Image from 'next/image';
+import Link from 'next/link';
 
 export interface CompanyRowProps {
   id: number;
@@ -36,7 +37,16 @@ const CompanyRow = ({
         {category}
       </td>
       <td>
-        <a href={`/companies/${id}`}>{company}</a>
+        <Link href={`/companies/${id}`} className="flex place-content-center">
+          <Image
+            width={24}
+            height={24}
+            src={'/images/logotype.png'}
+            alt={'company logotype'}
+            className="mr-2"
+          />{' '}
+          {company}
+        </Link>
       </td>
       <td>
         <StatusLabel status={status}>{labelByStatus[status]}</StatusLabel>
