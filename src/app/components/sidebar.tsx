@@ -1,12 +1,20 @@
-import React, { ReactNode } from 'react';
+'use client';
+
+import React from 'react';
 
 import Image from 'next/image';
+import { usePathname, useRouter } from 'next/navigation';
 
 import SidebarItem from './sidebar-item';
 
 export interface SidebarProps {}
 
 export const Sidebar = ({}: SidebarProps) => {
+  const router = useRouter();
+  const pathname = usePathname();
+  const handleExitButtonClick = () => {
+    router.push('/');
+  };
   return (
     <aside className="fixed top-0 left-0 x-40 w-60 h-screen">
       <div className="flex flex-col h-full overflow-y-auto bg-gray-900">
@@ -22,6 +30,7 @@ export const Sidebar = ({}: SidebarProps) => {
             pathname={'/companies'}
             src={'/icons/squares.svg'}
             alt={'companies icon'}
+            current={pathname === '/companies'}
           >
             Companies
           </SidebarItem>
@@ -29,10 +38,23 @@ export const Sidebar = ({}: SidebarProps) => {
             pathname={'/dashboard'}
             src={'/icons/briefcase.svg'}
             alt={'dashboard icon'}
+            current={pathname === '/dashboard'}
           >
             Dashboard
           </SidebarItem>
         </ul>
+        <button
+          className="flex items-center gap-2 p-6 mt-auto mx-auto"
+          onClick={handleExitButtonClick}
+        >
+          <Image
+            src={'/icons/arrow-left-on-rectangle.svg'}
+            alt={'exit icon'}
+            width={18}
+            height={18}
+          />
+          <span className="font-medium text-white">Exit</span>
+        </button>
       </div>
     </aside>
   );
