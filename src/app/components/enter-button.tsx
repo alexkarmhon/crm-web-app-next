@@ -4,11 +4,9 @@ import React from 'react';
 
 import { useRouter } from 'next/navigation';
 
-import Button from './button';
+import Button, { ButtonProps } from './button';
 
-export interface EnterButtonProps {}
-
-export const EnterButton = ({}: EnterButtonProps) => {
+export const EnterButton = (props: ButtonProps) => {
   const router = useRouter();
   const appStarter = () => {
     router.push('/dashboard');
@@ -16,7 +14,11 @@ export const EnterButton = ({}: EnterButtonProps) => {
   // setTimeout(() => {
   //   appStarter();
   // }, 5000);
-  return <Button onClick={appStarter}>Start app</Button>;
+  return (
+    <Button {...props} onClick={appStarter}>
+      Start app
+    </Button>
+  );
 };
 
 export default EnterButton;
