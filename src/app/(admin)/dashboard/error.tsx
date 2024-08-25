@@ -3,9 +3,7 @@
 import React from 'react';
 
 import Button from '@/app/components/button';
-import { RocketLaunchIcon } from '@heroicons/react/24/outline';
 import Image from 'next/image';
-import Link from 'next/link';
 
 export interface ErrorProps {
   error: Error;
