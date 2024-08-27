@@ -1,69 +1,58 @@
 import React from 'react';
 
-import StatusLabel from '@/app/components/status-label';
 import { Company } from '@/lib/api';
 import clsx from 'clsx';
 import Image from 'next/image';
-import Link from 'next/link';
+
+import StatusLabel from './status-label';
 
 export interface CompanyRowProps {
   company: Company;
 }
 
-const CompanyRow = ({ company }: CompanyRowProps) => {
-  const {
-    id,
-    categoryTitle,
-    title,
-    status,
-    hasPromotions,
-    joinedDate,
-    countryTitle,
-  } = company;
+export default function CompanyRow({ company }: CompanyRowProps) {
   return (
     <tr className="h-14 text-center text-gray-900 bg-white">
-      <td className="text-xs font-medium text-blue-700 rounded-l border-l-4 border-blue-700">
-        {categoryTitle}
+      <td className="text-xs font-medium text-blue-700 rounded-1 border-l-4 border-blue-700">
+        {company.categoryTitle}
       </td>
       <td>
-        <Link href={`/companies/${id}`} className="flex place-content-center">
+        <div className="inline-flex">
           <Image
             width={24}
             height={24}
-            src={'/images/logotype.png'}
-            alt={'company logotype'}
-            className="mr-2"
+            src="/images/logotype.png"
+            alt="company logotype"
+            className="mr-1"
           />
-          {title}
-        </Link>
+          <a href={`/companies/${company.id}`}>{company.title}</a>
+        </div>
       </td>
       <td>
-        <StatusLabel status={status}></StatusLabel>
+        <StatusLabel status={company.status} />
       </td>
       <td>
-        <div className="inline-flex items-center gap-1">
+        <div className="inline-flex items-center">
           <Image
-            width={16}
-            height={16}
-            src={`/icons/${hasPromotions ? 'check' : 'x-mark'}.svg`}
+            width={24}
+            height={24}
+            src={`icons/${company.hasPromotions ? 'check' : 'x-mark'}.svg`}
             alt="promotion icon"
           />
           <span
             className={clsx(
-              'text-sm font-medium',
-              hasPromotions ? 'text-green-700' : 'text-red-700',
+              'text-m font-medium',
+              company.hasPromotions ? 'text-green-700' : 'text-red-700',
             )}
           >
-            {hasPromotions ? 'Yes' : 'No'}
+            {company.hasPromotions ? 'Yes' : 'No'}
           </span>
         </div>
       </td>
-      <td>{countryTitle}</td>
+      <td>{company.countryTitle}</td>
       <td className="rounded-r">
-        {new Date(joinedDate).toLocaleDateString('uk-UA')}
+        {new Date(company.joinedDate).toLocaleDateString('uk-UA')}
       </td>
     </tr>
   );
-};
-
-export default CompanyRow;
+}

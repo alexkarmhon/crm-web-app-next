@@ -1,17 +1,17 @@
 import React, { ReactNode } from 'react';
 
 export interface LayoutProps {
+  children: ReactNode;
   header: ReactNode;
   toolbar: ReactNode;
   modal: ReactNode;
-  children: ReactNode;
 }
 
 export default function Layout({
+  children,
   header,
   toolbar,
   modal,
-  children,
 }: LayoutProps) {
   return (
     <>

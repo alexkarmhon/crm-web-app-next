@@ -4,18 +4,18 @@ import React, { useEffect, useState } from 'react';
 
 import Button, { ButtonProps } from './button';
 
-export const ErrorTriggerButton = (props: ButtonProps) => {
+export interface ErrorButtonProps {}
+
+export default function ErrorButton({ ...props }: ButtonProps) {
   const [count, setCount] = useState(0);
   useEffect(() => {
     if (count > 2) {
-      throw new Error('Unexpended error');
+      throw new Error('Unexpected error');
     }
   }, [count]);
   return (
     <Button {...props} onClick={() => setCount(count + 1)}>
-      Error Trigger
+      Magic button
     </Button>
   );
-};
-
-export default ErrorTriggerButton;
+}

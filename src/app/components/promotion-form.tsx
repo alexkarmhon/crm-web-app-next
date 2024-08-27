@@ -8,7 +8,6 @@ import LogoUploader from '@/app/components/logo-uploader';
 import { createPromotion, getCompany } from '@/lib/api';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { Form, Formik } from 'formik';
-import { useRouter } from 'next/navigation';
 
 export type PromotionFieldValues = {
   title: string;
@@ -32,7 +31,6 @@ export default function PromotionForm({
   onSubmit,
 }: PromotionFormProps) {
   const queryClient = useQueryClient();
-  const router = useRouter();
 
   const { data: company } = useQuery({
     queryKey: ['companies', companyId],
@@ -71,8 +69,6 @@ export default function PromotionForm({
     if (onSubmit) {
       onSubmit(values);
     }
-
-    router.back();
   };
 
   return (

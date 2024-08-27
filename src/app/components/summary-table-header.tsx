@@ -7,14 +7,14 @@ export interface SummaryTableHeaderProps {
   children: ReactNode;
 }
 
-export const SummaryTableHeader = ({
+export default function SummaryTableHeader({
   align = 'left',
   children,
-}: SummaryTableHeaderProps) => {
+}: SummaryTableHeaderProps) {
   return (
     <th
       className={clsx(
-        'py-2 px-5 text-xs font-normal first-of-type:rounded-l-sm last-of-type:rounded-r-sm',
+        'py-2 px-5 font-normal first-of-type:rounded-l-sm last-of-type:rounded-r-sm',
         `text-${align}`,
         '[&:nth-child(3n+1)]:text-white [&:nth-child(3n+1)]:bg-gray-900',
         '[&:nth-child(3n+2)]:text-gray-900 [&:nth-child(3n+2)]:bg-purple-200',
@@ -24,6 +24,4 @@ export const SummaryTableHeader = ({
       {children}
     </th>
   );
-};
-
-export default SummaryTableHeader;
+}

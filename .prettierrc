@@ -6,7 +6,7 @@
   "singleQuote": true,
   "trailingComma": "all",
   "bracketSpacing": true,
-  "bracketSameLine": false,
+  "jsxBracketSameLine": false,
   "arrowParens": "avoid",
   "proseWrap": "always",
   "plugins": ["@ianvs/prettier-plugin-sort-imports"],

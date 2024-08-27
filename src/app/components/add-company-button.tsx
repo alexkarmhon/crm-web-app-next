@@ -6,13 +6,11 @@ import { useRouter } from 'next/navigation';
 
 import Button from './button';
 
-const AddCompanyButton = () => {
-  const router = useRouter();
+export default function AddCompanyButton() {
+  const route = useRouter();
   return (
     <>
-      <Button onClick={() => router.push('/companies/new')}>Add company</Button>
+      <Button onClick={() => route.push('/companies/new')}>Add company</Button>
     </>
   );
-};
-
-export default AddCompanyButton;
+}

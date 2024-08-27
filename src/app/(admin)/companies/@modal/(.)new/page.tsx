@@ -2,7 +2,7 @@
 
 import React from 'react';
 
-import CompanyForm from '@/app/components/company-form';
+import CompanyFormModal from '@/app/components/company-form-modal';
 import Modal from '@/app/components/modal';
 import { useRouter } from 'next/navigation';
 
@@ -12,7 +12,11 @@ export default function Page({}: PageProps) {
   const router = useRouter();
   return (
     <Modal show={true} onClose={() => router.back()}>
-      <CompanyForm onSubmit={console.log} />
+      <CompanyFormModal
+        onSubmit={console.log}
+        show={true}
+        onClose={() => router.back()}
+      />
     </Modal>
   );
 }

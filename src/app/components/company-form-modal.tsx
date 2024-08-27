@@ -2,17 +2,26 @@
 
 import React from 'react';
 
-import CompanyForm, { CompanyFormProps } from '@/app/components/company-form';
-import Modal, { ModalProps } from '@/app/components/modal';
+import CompanyForm, {
+  CompanyFieldValues,
+  CompanyFormProps,
+} from './company-form';
+import Modal, { ModalProps } from './modal';
 
 export interface CompanyFormModalProps extends ModalProps {
   onSubmit: CompanyFormProps['onSubmit'];
 }
 
-const CompanyFormModal = ({ onSubmit, ...rest }: CompanyFormModalProps) => {
+export const CompanyFormModal = ({
+  onSubmit,
+  ...rest
+}: CompanyFormModalProps) => {
+  const handleSubmit = (values: CompanyFieldValues) => {
+    console.log(values);
+  };
   return (
     <Modal {...rest}>
-      <CompanyForm onSubmit={onSubmit} />
+      <CompanyForm onSubmit={handleSubmit} />
     </Modal>
   );
 };
