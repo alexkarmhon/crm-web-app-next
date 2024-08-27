@@ -1,5 +1,4 @@
 import AddPromotionButton from '@/app/components/add-promotion-button';
-import DeleteCompanyButton from '@/app/components/delete-company-button';
 import SearchInput from '@/app/components/search-input';
 import Toolbar from '@/app/components/toolbar';
 
@@ -13,7 +12,6 @@ export default function Page({ params }: PageProps) {
       action={
         <>
           <AddPromotionButton companyId={params.id} />
-          <DeleteCompanyButton companyId={params.id} />
         </>
       }
     >
