@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import React from 'react';
 
 import { Plus_Jakarta_Sans } from 'next/font/google';
 
@@ -8,7 +8,11 @@ import Providers from './components/providers';
 
 const font = Plus_Jakarta_Sans({ subsets: ['latin'] });
 
-export default function RootLayout({ children }: { children: ReactNode }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html lang="en">
       <body className={font.className}>

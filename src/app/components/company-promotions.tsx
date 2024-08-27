@@ -11,15 +11,21 @@ export interface CompanyPromotionsProps {
   companyId: string;
 }
 
-export default function CompanyPromotions({
+export const CompanyPromotions: React.FC<CompanyPromotionsProps> = ({
   companyId,
-}: CompanyPromotionsProps) {
+}) => {
   const queryClient = useQueryClient();
 
-  const { data } = useQuery({
+  const { data, isError, error } = useQuery({
     queryKey: ['promotions', companyId],
     queryFn: () => getPromotions({ companyId }),
     staleTime: 10 * 1000,
+    retry: (failureCount, error) => {
+      if (error) {
+        return false; // Не повторювати запит якщо це 404 помилка
+      }
+      return failureCount < 3; // Повторювати запит до 3 разів для інших помилок
+    },
   });
 
   const { mutateAsync } = useMutation({
@@ -40,6 +46,10 @@ export default function CompanyPromotions({
     await mutateAsync(id);
   };
 
+  if (!data?.length || error) {
+    return <p>No promotions available for this company.</p>;
+  }
+
   return (
     <div className="grid grid-cols-12 gap-5">
       {data?.map(promotion => (
@@ -49,4 +59,6 @@ export default function CompanyPromotions({
       ))}
     </div>
   );
-}
+};
+
+export default CompanyPromotions;

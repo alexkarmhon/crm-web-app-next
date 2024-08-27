@@ -5,12 +5,12 @@ import React, { Fragment } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 
 export interface ModalProps {
+  children?: React.ReactNode;
   show: boolean;
   onClose: () => void;
-  children?: React.ReactNode;
 }
 
-export default function Modal({ show, onClose, children }: ModalProps) {
+const Modal = ({ show, children, onClose }: ModalProps) => {
   return (
     <Transition.Root as={Fragment} show={show}>
       <Dialog
@@ -27,7 +27,7 @@ export default function Modal({ show, onClose, children }: ModalProps) {
           leaveFrom="opacity-100"
           leaveTo="opacity-0"
         >
-          <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
+          <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
         </Transition.Child>
         <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-white shadow-xl transition-all p-7 mx-auto sm:my-10 sm:w-full sm:max-w-2xl">
           {children}
@@ -35,4 +35,6 @@ export default function Modal({ show, onClose, children }: ModalProps) {
       </Dialog>
     </Transition.Root>
   );
-}
+};
+
+export default Modal;

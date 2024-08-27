@@ -1,5 +1,7 @@
 import React from 'react';
 
-export default function Default() {
+export interface DefaultProps {}
+
+export default function Default({}: DefaultProps) {
   return null;
 }

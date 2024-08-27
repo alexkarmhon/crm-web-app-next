@@ -9,7 +9,7 @@ export interface InputFieldProps
   label?: string;
 }
 
-export const InputField = ({ label, id, ...rest }: InputFieldProps) => {
+const InputField = ({ label, id, ...rest }: InputFieldProps) => {
   return (
     <div className="flex flex-col">
       {label && (

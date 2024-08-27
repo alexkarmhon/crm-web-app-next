@@ -15,7 +15,7 @@ export interface StatCardProps {
   counter: number;
 }
 
-export default function StatCard({ type, label, counter }: StatCardProps) {
+export const StatCard = ({ type, label, counter }: StatCardProps) => {
   return (
     <div
       className={clsx(
@@ -42,4 +42,6 @@ export default function StatCard({ type, label, counter }: StatCardProps) {
       <p className="text-6xl font-semibold">{counter}</p>
     </div>
   );
-}
+};
+
+export default StatCard;

@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import React, { ReactNode } from 'react';
 
 import { CompanyStatus } from '@/lib/api';
 import clsx from 'clsx';
@@ -15,7 +15,7 @@ const labelByStatus = {
   [CompanyStatus.Suspended]: 'Suspended',
 };
 
-export default function StatusLabel({ status, disabled }: StatusLabelProps) {
+const StatusLabel = ({ status, disabled }: StatusLabelProps) => {
   return (
     <div
       className={clsx(
@@ -24,11 +24,15 @@ export default function StatusLabel({ status, disabled }: StatusLabelProps) {
         status === CompanyStatus.NotActive && 'text-red-700 bg-red-100',
         status === CompanyStatus.Pending && 'text-orange-700 bg-orange-100',
         status === CompanyStatus.Suspended && 'text-blue-700 bg-blue-100',
-        { ['opacity-75 cursor-not-allowed']: disabled },
+        {
+          ['opacity-75 cursor-not-allowed']: disabled,
+        },
       )}
     >
       <div className="w-1 h-1 mr-2 rounded-full bg-current" />
       {labelByStatus[status]}
     </div>
   );
-}
+};
+
+export default StatusLabel;

@@ -10,15 +10,17 @@ export interface AddPromotionButtonProps {
   companyId: string;
 }
 
-export default function AddPromotionButton({
+export const AddPromotionButton: React.FC<AddPromotionButtonProps> = ({
   companyId,
-}: AddPromotionButtonProps) {
+}) => {
   const router = useRouter();
   return (
     <Button
       onClick={() => router.push(`/companies/${companyId}/new-promotion`)}
     >
-      Add promotions
+      Add promotion
     </Button>
   );
-}
+};
+
+export default AddPromotionButton;

@@ -1,19 +1,21 @@
-import React, { ReactNode } from 'react';
+import React, { ButtonHTMLAttributes, ReactNode } from 'react';
 
 export interface DeletePromotionButtonProps
-  extends Partial<React.ButtonHTMLAttributes<HTMLButtonElement>> {
+  extends ButtonHTMLAttributes<HTMLButtonElement> {
   onClick: () => void;
   children?: ReactNode;
 }
 
-export default function DeletePromotionButton({
+export const DeletePromotionButton: React.FC<DeletePromotionButtonProps> = ({
   onClick,
   children,
   ...rest
-}: DeletePromotionButtonProps) {
+}) => {
   return (
-    <button type="button" {...rest} onClick={onClick}>
+    <button {...rest} onClick={onClick}>
       {children}
     </button>
   );
-}
+};
+
+export default DeletePromotionButton;

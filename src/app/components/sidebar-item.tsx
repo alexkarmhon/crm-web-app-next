@@ -1,24 +1,24 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 
 import clsx from 'clsx';
 import Image from 'next/image';
 import Link from 'next/link';
 
 export interface SidebarItemProps {
-  current?: boolean;
   pathname: string;
   src: string;
   alt: string;
-  children: React.ReactNode;
+  children: ReactNode;
+  current?: boolean;
 }
 
-export default function SidebarItem({
-  current,
+export const SidebarItem = ({
   pathname,
   src,
   alt,
   children,
-}: SidebarItemProps) {
+  current,
+}: SidebarItemProps) => {
   return (
     <li>
       <Link
@@ -34,4 +34,6 @@ export default function SidebarItem({
       </Link>
     </li>
   );
-}
+};
+
+export default SidebarItem;

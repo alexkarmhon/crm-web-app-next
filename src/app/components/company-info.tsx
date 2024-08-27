@@ -2,16 +2,17 @@
 
 import React from 'react';
 
-import StatusLabel from '@/app/components/status-label';
 import { getCompany } from '@/lib/api';
 import { useQuery } from '@tanstack/react-query';
 import Image from 'next/image';
+
+import StatusLabel from './status-label';
 
 export interface CompanyInfoProps {
   companyId: string;
 }
 
-export default function CompanyInfo({ companyId }: CompanyInfoProps) {
+export const CompanyInfo: React.FC<CompanyInfoProps> = ({ companyId }) => {
   const { data: company } = useQuery({
     queryKey: ['companies', companyId],
     queryFn: () => getCompany(companyId),
@@ -19,6 +20,7 @@ export default function CompanyInfo({ companyId }: CompanyInfoProps) {
   });
 
   if (!company) return null;
+
   return (
     <div className="flex flex-col gap-5">
       <div className="flex flex-col items-center p-7 gap-5 bg-gray-900 rounded">
@@ -42,4 +44,6 @@ export default function CompanyInfo({ companyId }: CompanyInfoProps) {
       </div>
     </div>
   );
-}
+};
+
+export default CompanyInfo;
