@@ -2,26 +2,22 @@ import React from 'react';
 
 import DashboardCard from '@/app/components/dashboard-card';
 import StatCard, { StatCardType } from '@/app/components/stat-card';
-import { getCategories, getCompanies } from '@/lib/api';
-import getCountById from '@/lib/utils/getCountById';
+import { getSummaryCategories } from '@/lib/api';
 
 export interface PageProps {}
 
 export default async function Page({}: PageProps) {
-  const categories = await getCategories();
-  const companies = await getCompanies();
-
-  const counts = getCountById(companies, 'categoryId');
+  const data = await getSummaryCategories();
 
   return (
-    <DashboardCard label="Categories of companies">
+    <DashboardCard label={'Categories of company'}>
       <div className="grid grid-cols-12 gap-3 pb-5 px-5">
-        {categories.map(({ id, title }) => (
-          <div key={id} className="col-span-3">
+        {data.map(({ categoryId, categoryTitle, count }) => (
+          <div key={categoryId} className="col-span-3">
             <StatCard
               type={StatCardType.Dark}
-              label={title}
-              counter={counts[id] || 0}
+              label={categoryTitle}
+              counter={count}
             />
           </div>
         ))}

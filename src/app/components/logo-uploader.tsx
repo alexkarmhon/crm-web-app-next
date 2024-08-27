@@ -2,38 +2,25 @@
 
 import React from 'react';
 
-import clsx from 'clsx';
 import Image from 'next/image';
 
 export interface LogoUploaderProps
   extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'type'> {
   label?: string;
-  square?: boolean;
 }
 
 const LogoUploader = ({
   label,
   placeholder,
   id,
-  square,
   ...rest
 }: LogoUploaderProps) => {
   return (
-    <div
-      className={clsx(
-        'flex mb-3',
-        !square && 'gap-10',
-        square && 'gap-2 flex-col',
-      )}
-    >
+    <div className="flex gap-10 mb-3">
       {label && <p className="text-base color-gray-900">{label}</p>}
       <label
         htmlFor={id}
-        className={clsx(
-          'flex flex-col items-center justify-center h-40 bg-white border border-slate-900 border-dashed cursor-pointer',
-          !square && 'w-40 rounded-full',
-          square && 'w-full',
-        )}
+        className="flex flex-col items-center justify-center w-40 h-40 bg-white border border-slate-900 border-dashed rounded-full cursor-pointer"
       >
         <Image
           className="mb-1"
