@@ -128,3 +128,13 @@ export const deletePromotion = async (id: string, init?: RequestInit) => {
     },
   });
 };
+
+export const deleteCompany = async (id: string, init?: RequestInit) => {
+  return sendRequest<Company>(buildUrl('companies', id), {
+    method: 'DELETE',
+    headers: {
+      ...init?.headers,
+      'content-type': 'application/json',
+    },
+  });
+};
