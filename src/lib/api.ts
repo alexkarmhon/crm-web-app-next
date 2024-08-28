@@ -54,7 +54,8 @@ export interface Promotion {
   avatar?: string;
 }
 
-const PROJECT_TOKEN = process.env.NEXT_PUBLIC_PROJECT_TOKEN;
+// const PROJECT_TOKEN = process.env.NEXT_PUBLIC_PROJECT_TOKEN;
+const PROJECT_TOKEN = '65c21c4ff7e6ea59682aa7e1';
 
 const buildUrl = (...paths: string[]) =>
   `https://${PROJECT_TOKEN}.mockapi.io/api/v1/${paths.join('/')}`;
