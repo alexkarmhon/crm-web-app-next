@@ -83,7 +83,6 @@ export const getSummaryCategories = () => {
       categoryId: 1,
       categoryTitle: 'Products',
       count: 4,
->>>>>>> parent of 2bb2747 (ClientProvider)
     },
     {
       categoryId: 2,
