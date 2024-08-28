@@ -119,6 +119,20 @@ export const createPromotion = async (
   });
 };
 
+export const createCompany = async (
+  data: Omit<Company, 'id'>,
+  init?: RequestInit,
+) => {
+  return sendRequest<Promotion>(buildUrl('companies'), {
+    method: 'POST',
+    body: JSON.stringify(data),
+    headers: {
+      ...(init && init.headers),
+      'content-type': 'application/json',
+    },
+  });
+};
+
 export const deletePromotion = async (id: string, init?: RequestInit) => {
   return sendRequest<Promotion>(buildUrl('promotions', id), {
     method: 'DELETE',

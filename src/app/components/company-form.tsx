@@ -3,7 +3,10 @@
 import React from 'react';
 
 import LogoUploader from '@/app/components/logo-uploader';
+import { CompanyStatus, createCompany } from '@/lib/api';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { Form, Formik } from 'formik';
+import { useRouter } from 'next/navigation';
 
 import Button from './button';
 import InputField from './input-field';
@@ -31,14 +34,45 @@ export interface CompanyFormProps {
 }
 
 const CompanyForm = ({ onSubmit }: CompanyFormProps) => {
+  const router = useRouter();
+
+  const { mutateAsync } = useMutation({
+    mutationFn: createCompany,
+    onSuccess: () => {
+      router.back();
+    },
+  });
+
+  const handleSubmit = async (values: CompanyFieldValues) => {
+    const { name, description, date, category, country, status } = values;
+    await mutateAsync({
+      title: name,
+      description: description,
+      status: status as CompanyStatus,
+      joinedDate: date,
+      hasPromotions: false,
+      categoryId: category,
+      categoryTitle: category,
+      countryId: country,
+      countryTitle: country,
+    });
+
+    router.push('/companies');
+  };
+
   return (
-    <Formik initialValues={initialValues} onSubmit={onSubmit}>
+    <Formik initialValues={initialValues} onSubmit={handleSubmit}>
       <Form className="flex flex-col gap-10">
         <p className="mb-0.5 text-xl">Add new company</p>
         <div className="flex gap-6">
           <div className="flex flex-col flex-1 gap-5">
             <LogoUploader label="Logo" placeholder="Upload photo" />
-            <InputField label="Status" placeholder="Status" name="status" />
+            <InputField
+              label="Status"
+              placeholder="Status"
+              name="status"
+              as="select"
+            />
             <InputField label="Country" placeholder="Country" name="country" />
           </div>
           <div className="flex flex-col flex-1 gap-5">
