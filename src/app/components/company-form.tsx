@@ -10,6 +10,7 @@ import { useRouter } from 'next/navigation';
 
 import Button from './button';
 import InputField from './input-field';
+import SelectStatusField from './select-status-field';
 
 export type CompanyFieldValues = {
   name: string;
@@ -39,7 +40,7 @@ const CompanyForm = ({ onSubmit }: CompanyFormProps) => {
   const { mutateAsync } = useMutation({
     mutationFn: createCompany,
     onSuccess: () => {
-      router.back();
+      router.push('/companies');
     },
   });
 
@@ -67,11 +68,12 @@ const CompanyForm = ({ onSubmit }: CompanyFormProps) => {
         <div className="flex gap-6">
           <div className="flex flex-col flex-1 gap-5">
             <LogoUploader label="Logo" placeholder="Upload photo" />
-            <InputField
+            {/* <InputField label="Status" placeholder="Status" name="status" /> */}
+            <SelectStatusField
               label="Status"
-              placeholder="Status"
               name="status"
               as="select"
+              defaultValue={CompanyStatus.Active}
             />
             <InputField label="Country" placeholder="Country" name="country" />
           </div>
