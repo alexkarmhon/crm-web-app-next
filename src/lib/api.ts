@@ -30,6 +30,17 @@ export enum CompanyStatus {
   Suspended = 'suspended',
 }
 
+export enum Categories {
+  Category1 = 'Category 1',
+  Category2 = 'Category 2',
+  Category3 = 'Category 3',
+  Category4 = 'Category 4',
+  Category5 = 'Category 5',
+  Category6 = 'Category 6',
+  Category7 = 'Category 7',
+  Category8 = 'Category 8',
+}
+
 export interface Company {
   id: string;
   title: string;
@@ -127,7 +138,22 @@ export const createCompany = async (
     method: 'POST',
     body: JSON.stringify(data),
     headers: {
-      ...(init && init.headers),
+      ...init?.headers,
+      'content-type': 'application/json',
+    },
+  });
+};
+
+export const editCompanyInfo = async (
+  id: string,
+  data: Partial<Company>,
+  init?: RequestInit,
+) => {
+  return sendRequest<Company>(buildUrl('companies', id), {
+    method: 'PUT',
+    body: JSON.stringify(data),
+    headers: {
+      ...init?.headers,
       'content-type': 'application/json',
     },
   });

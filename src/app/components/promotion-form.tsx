@@ -5,7 +5,7 @@ import React from 'react';
 import Button from '@/app/components/button';
 import InputField from '@/app/components/input-field';
 import LogoUploader from '@/app/components/logo-uploader';
-import { createPromotion, getCompany } from '@/lib/api';
+import { createPromotion, editCompanyInfo, getCompany } from '@/lib/api';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { Form, Formik } from 'formik';
 import { useRouter } from 'next/navigation';
@@ -43,7 +43,10 @@ export default function PromotionForm({
 
   const { mutateAsync, isPending } = useMutation({
     mutationFn: createPromotion,
-    onSuccess: () => {
+    onSuccess: async () => {
+      if (company && !company.hasPromotions) {
+        await editCompanyInfo(companyId, { hasPromotions: true });
+      }
       queryClient.invalidateQueries({
         queryKey: ['promotions', companyId],
       });

@@ -1,7 +1,8 @@
 import React from 'react';
 
 import StatusLabel from '@/app/components/status-label';
-import { Company } from '@/lib/api';
+import { Company, getCompany } from '@/lib/api';
+import { useQuery } from '@tanstack/react-query';
 import clsx from 'clsx';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -20,6 +21,13 @@ const CompanyRow = ({ company }: CompanyRowProps) => {
     joinedDate,
     countryTitle,
   } = company;
+
+  const { data } = useQuery({
+    queryKey: ['companies', company.id],
+    queryFn: () => getCompany(company.id),
+    staleTime: 10 * 1000,
+  });
+
   return (
     <tr className="h-14 text-center text-gray-900 bg-white">
       <td className="text-xs font-medium text-blue-700 rounded-l border-l-4 border-blue-700">
