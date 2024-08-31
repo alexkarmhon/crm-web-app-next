@@ -4,7 +4,7 @@ import React from 'react';
 
 import LogoUploader from '@/app/components/logo-uploader';
 import { CompanyStatus, createCompany } from '@/lib/api';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useMutation } from '@tanstack/react-query';
 import { Form, Formik } from 'formik';
 import { useRouter } from 'next/navigation';
 
@@ -20,6 +20,7 @@ export type CompanyFieldValues = {
   category: string;
   date: string;
   description: string;
+  avatar: string;
 };
 
 const initialValues: CompanyFieldValues = {
@@ -29,6 +30,7 @@ const initialValues: CompanyFieldValues = {
   category: '',
   date: '',
   description: '',
+  avatar: '',
 };
 
 export interface CompanyFormProps {
@@ -46,7 +48,8 @@ const CompanyForm = ({ onSubmit }: CompanyFormProps) => {
   });
 
   const handleSubmit = async (values: CompanyFieldValues) => {
-    const { name, description, date, category, country, status } = values;
+    const { name, description, date, category, country, status, avatar } =
+      values;
     await mutateAsync({
       title: name,
       description: description,
@@ -54,9 +57,10 @@ const CompanyForm = ({ onSubmit }: CompanyFormProps) => {
       joinedDate: date,
       hasPromotions: false,
       categoryId: category,
-      categoryTitle: category,
+      categoryTitle: `Category ${category}`,
       countryId: country,
       countryTitle: country,
+      avatar: avatar,
     });
 
     router.push('/companies');
@@ -68,17 +72,16 @@ const CompanyForm = ({ onSubmit }: CompanyFormProps) => {
         <p className="mb-0.5 text-xl">Add new company</p>
         <div className="flex gap-6">
           <div className="flex flex-col flex-1 gap-5">
-            <LogoUploader label="Logo" placeholder="Upload photo" />
+            <LogoUploader
+              label="Logo"
+              placeholder="Upload photo"
+              name="avatar"
+            />
             <SelectStatusField label="Status" name="status" as="select" />
             <InputField label="Country" placeholder="Country" name="country" />
           </div>
           <div className="flex flex-col flex-1 gap-5">
             <InputField label="Name" placeholder="Name" name="name" />
-            {/* <InputField
-              label="Category"
-              placeholder="Category"
-              name="category"
-            /> */}
             <SelectCategoryField label="Category" name="category" as="select" />
             <InputField label="Joined date" type="date" name="date" />
             <InputField

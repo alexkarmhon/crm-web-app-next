@@ -31,14 +31,14 @@ export enum CompanyStatus {
 }
 
 export enum Categories {
-  Category1 = 'Category 1',
-  Category2 = 'Category 2',
-  Category3 = 'Category 3',
-  Category4 = 'Category 4',
-  Category5 = 'Category 5',
-  Category6 = 'Category 6',
-  Category7 = 'Category 7',
-  Category8 = 'Category 8',
+  Category1 = '1',
+  Category2 = '2',
+  Category3 = '3',
+  Category4 = '4',
+  Category5 = '5',
+  Category6 = '6',
+  Category7 = '7',
+  Category8 = '8',
 }
 
 export interface Company {
