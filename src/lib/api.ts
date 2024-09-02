@@ -1,3 +1,28 @@
+export enum CompanyStatus {
+  Active = 'active',
+  NotActive = 'notActive',
+  Pending = 'pending',
+  Suspended = 'suspended',
+}
+
+export enum Categories {
+  Category1 = '1',
+  Category2 = '2',
+  Category3 = '3',
+  Category4 = '4',
+  Category5 = '5',
+  Category6 = '6',
+  Category7 = '7',
+  Category8 = '8',
+}
+
+export enum CountriesId {
+  Canada = '1',
+  USA = '2',
+  Italia = '3',
+  Ukraine = '4',
+  Spain = '5',
+}
 export interface SummaryStats {
   promotions: number;
   categories: number;
@@ -21,24 +46,6 @@ export interface Country {
 export interface Category {
   id: string;
   title: string;
-}
-
-export enum CompanyStatus {
-  Active = 'active',
-  NotActive = 'notActive',
-  Pending = 'pending',
-  Suspended = 'suspended',
-}
-
-export enum Categories {
-  Category1 = '1',
-  Category2 = '2',
-  Category3 = '3',
-  Category4 = '4',
-  Category5 = '5',
-  Category6 = '6',
-  Category7 = '7',
-  Category8 = '8',
 }
 
 export interface Company {
@@ -90,20 +97,12 @@ export const getSummarySales = (init?: RequestInit) => {
   return sendRequest<SummarySales[]>(buildUrl('summary-sales'), init);
 };
 
-export const getCountries = (init?: RequestInit) => {
-  return sendRequest<Country[]>(buildUrl('countries'), init);
-};
-
 export const getCategories = (init?: RequestInit) => {
   return sendRequest<Category[]>(buildUrl('categories'), init);
 };
 
 export const getCompanies = (init?: RequestInit) => {
   return sendRequest<Company[]>(buildUrl('companies'), init);
-};
-
-export const getCompany = (id: string, init?: RequestInit) => {
-  return sendRequest<Company>(buildUrl('companies', id), init);
 };
 
 export const getPromotions = async (
@@ -128,6 +127,20 @@ export const createPromotion = async (
       'content-type': 'application/json',
     },
   });
+};
+
+export const deletePromotion = async (id: string, init?: RequestInit) => {
+  return sendRequest<Promotion>(buildUrl('promotions', id), {
+    method: 'DELETE',
+    headers: {
+      ...init?.headers,
+      'content-type': 'application/json',
+    },
+  });
+};
+
+export const getCompany = (id: string, init?: RequestInit) => {
+  return sendRequest<Company>(buildUrl('companies', id), init);
 };
 
 export const createCompany = async (
@@ -159,16 +172,6 @@ export const editCompanyInfo = async (
   });
 };
 
-export const deletePromotion = async (id: string, init?: RequestInit) => {
-  return sendRequest<Promotion>(buildUrl('promotions', id), {
-    method: 'DELETE',
-    headers: {
-      ...init?.headers,
-      'content-type': 'application/json',
-    },
-  });
-};
-
 export const deleteCompany = async (id: string, init?: RequestInit) => {
   return sendRequest<Company>(buildUrl('companies', id), {
     method: 'DELETE',
@@ -177,4 +180,8 @@ export const deleteCompany = async (id: string, init?: RequestInit) => {
       'content-type': 'application/json',
     },
   });
+};
+
+export const getCountries = (init?: RequestInit) => {
+  return sendRequest<Country[]>(buildUrl('countries'), init);
 };

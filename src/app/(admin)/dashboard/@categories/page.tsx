@@ -23,9 +23,6 @@ export default function Page({}: PageProps) {
     staleTime: 10 * 1000,
   });
 
-  // const categories = await getCategories();
-  // const companies = await getCompanies();
-
   if (!categories || !companies) {
     return <Loader />;
   }

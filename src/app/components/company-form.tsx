@@ -3,7 +3,7 @@
 import React from 'react';
 
 import LogoUploader from '@/app/components/logo-uploader';
-import { CompanyStatus, createCompany } from '@/lib/api';
+import { CompanyStatus, CountriesId, createCompany } from '@/lib/api';
 import { useMutation } from '@tanstack/react-query';
 import { Form, Formik } from 'formik';
 import { useRouter } from 'next/navigation';
@@ -50,6 +50,15 @@ const CompanyForm = ({ onSubmit }: CompanyFormProps) => {
   const handleSubmit = async (values: CompanyFieldValues) => {
     const { name, description, date, category, country, status, avatar } =
       values;
+
+    if (
+      !Object.values(CountriesId).includes(
+        CountriesId[country as keyof typeof CountriesId],
+      )
+    ) {
+      return 'Other';
+    }
+
     await mutateAsync({
       title: name,
       description: description,
@@ -58,7 +67,7 @@ const CompanyForm = ({ onSubmit }: CompanyFormProps) => {
       hasPromotions: false,
       categoryId: category,
       categoryTitle: `Category ${category}`,
-      countryId: country,
+      countryId: CountriesId[country as keyof typeof CountriesId],
       countryTitle: country,
       avatar: avatar,
     });
