@@ -51,13 +51,17 @@ const CompanyForm = ({ onSubmit }: CompanyFormProps) => {
     const { name, description, date, category, country, status, avatar } =
       values;
 
-    if (
-      !Object.values(CountriesId).includes(
-        CountriesId[country as keyof typeof CountriesId],
-      )
-    ) {
-      return 'Other';
-    }
+    // if (
+    //   !Object.values(CountriesId).includes(
+    //     CountriesId[country as keyof typeof CountriesId],
+    //   )
+    // ) {
+    //   return 'Other';
+    // }
+
+    const isInCountriesId = Object.values(CountriesId).includes(
+      CountriesId[country as keyof typeof CountriesId],
+    );
 
     await mutateAsync({
       title: name,
@@ -67,7 +71,9 @@ const CompanyForm = ({ onSubmit }: CompanyFormProps) => {
       hasPromotions: false,
       categoryId: category,
       categoryTitle: `Category ${category}`,
-      countryId: CountriesId[country as keyof typeof CountriesId],
+      countryId: isInCountriesId
+        ? CountriesId[country as keyof typeof CountriesId]
+        : 'other',
       countryTitle: country,
       avatar: avatar,
     });
