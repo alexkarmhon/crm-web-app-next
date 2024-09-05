@@ -31,13 +31,20 @@ export default function Page({}: PageProps) {
 
   return (
     <DashboardCard label="Countries of companies">
-      <div className="flex items-end pb-5 px-5 gap-2">
-        <div>
+      <div className="relative pb-5 px-5 gap-2 lg:flex-row-reverse lg:mt-auto">
+        <Image
+          width={395}
+          height={262}
+          src="/images/world.svg"
+          alt="world"
+          className="lg:w-300 lg:h-200 mx-auto"
+        />
+        <div className="grid gap-2 grid-cols-3 mx-auto md:mt-auto">
           {countries?.map(({ id, title }) => (
             <p
               key={id}
               className={clsx(
-                'text-sm text-gray-900 font-medium',
+                'text-sm text-gray-900 font-medium leading-none',
                 'before:inline-block before:w-2 before:h-2 before:rounded-full before:align-middle before:mr-2 before:bg-purple-200',
               )}
             >{`${title} - ${counts[title] || 0}`}</p>
@@ -51,7 +58,6 @@ export default function Page({}: PageProps) {
             Other - {counts['Unknown']}
           </p>
         </div>
-        <Image width={395} height={262} src="/images/world.svg" alt="world" />
       </div>
     </DashboardCard>
   );

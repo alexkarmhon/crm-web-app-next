@@ -26,10 +26,12 @@ export const SidebarItem = ({
         className={clsx(
           'flex items-center h-9 mx-1 gap-3.5',
           current &&
-            'after:h-full after:ml-auto after:border-2 after:border-purple-200 after:rounded-sm',
+            'relative after:absolute after:bottom-0 after:left-6 after:w-10/12 after:h-[2px] after:bg-purple-200 sm:after:w-[2px] sm:after:h-full sm:after:top-0 sm:after:right-[-12px] sm:after:ml-auto sm:after:rounded-sm',
+
+          // 'after:h-full after:ml-auto after:border-2 after:border-purple-200 after:rounded-sm',
         )}
       >
-        <Image className="ml-5" width={18} height={18} src={src} alt={alt} />
+        <Image className="ml-0" width={18} height={18} src={src} alt={alt} />
         <span className="font-medium text-zinc-50">{children}</span>
       </Link>
     </li>

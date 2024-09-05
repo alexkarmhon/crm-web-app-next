@@ -21,25 +21,33 @@ export const StatCard = ({ type, label, counter }: StatCardProps) => {
       className={clsx(
         'rounded',
         type === StatCardType.Dark &&
-          'pt-3 px-3 bg-gray-900 odd:text-purple-200 even:text-lime-200 text-right',
+          'pt-3 px-3 h-28 bg-gray-900 odd:text-purple-200 even:text-lime-200 text-right',
         type === StatCardType.Gradient && [
           styles.gradient,
-          'p-7 bg-purple-200 text-gray-900 text-left',
+          'h-36 p-5 sm:p-7 bg-purple-200 text-gray-900 text-left',
         ],
       )}
     >
       <p
         className={clsx(
-          'text-left before:w-4 before:h-0.5 before:rounded',
+          'text-left before:w-2 sm:before:w-4 before:h-0.5 before:rounded',
           type === StatCardType.Dark &&
-            'text-sm mb-1 text-zinc-50 before:block before:mb-2 before:bg-zinc-50',
+            'text-[8px] text-zinc-50 before:block before:mb-2 before:bg-zinc-50 lg:text-sm',
           type === StatCardType.Gradient &&
-            'text-xs mb-5 before:inline-block before:mr-2 before:align-middle before:bg-gray-900',
+            'text-xs mb-auto before:inline-block before:mr-2 before:align-middle before:bg-gray-900 text-center sm:text-pretty sm:text-sm',
         )}
       >
         {label}
       </p>
-      <p className="text-6xl font-semibold">{counter}</p>
+      <p
+        className={clsx(
+          type === StatCardType.Gradient &&
+            'mt-auto text-6xl font-semibold text-center sm:text-pretty',
+          type === StatCardType.Dark && 'text-5xl md:text-6xl lg:text-5xl',
+        )}
+      >
+        {counter}
+      </p>
     </div>
   );
 };

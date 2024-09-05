@@ -16,16 +16,17 @@ export const Sidebar = ({}: SidebarProps) => {
     router.push('/');
   };
   return (
-    <aside className="fixed top-0 left-0 x-40 w-60 h-screen">
-      <div className="flex flex-col h-full overflow-y-auto bg-gray-900">
+    // <aside className="fixed top-0 left-0 x-40 w-60 h-screen">
+    <aside className="fixed z-10 top-0 left-0 w-full h-auto  sm:w-60 sm:h-screen md:w-64">
+      <div className="flex flex-col h-full overflow-y-auto bg-gray-900 items-center">
         <Image
-          className="py-8 mb-11 mx-auto"
+          className="py-8 mx-auto sm:mb-11"
           width={122}
           height={25}
           src="/icons/logo.svg"
           alt="logo"
         />
-        <ul>
+        <ul className="flex mx-auto sm:flex-col">
           <SidebarItem
             pathname={'/companies'}
             src={'/icons/squares.svg'}

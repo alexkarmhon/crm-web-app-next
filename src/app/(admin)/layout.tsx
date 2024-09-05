@@ -8,9 +8,9 @@ export interface LayoutProps {
 
 export default function Layout({ children }: LayoutProps) {
   return (
-    <>
+    <div className="flex flex-col">
       <Sidebar />
-      <div className="ml-60">{children}</div>
-    </>
+      <div className="ml-0 sm:ml-60">{children}</div>
+    </div>
   );
 }
