@@ -28,7 +28,7 @@ export const SelectStatusField: React.FC<SelectStatusFieldProps> = ({
         {...rest}
         id={id}
         as={as}
-        className="p-3 h-11 text-sm rounded border border-gray-300 shadow"
+        className="p-3 h-8 sm:h-11 text-xs sm:text-sm rounded border border-gray-300 shadow"
       >
         <option></option>
         <option value={CompanyStatus.Active}>Active</option>

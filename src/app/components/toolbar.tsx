@@ -7,7 +7,7 @@ export interface ToolbarProps {
 
 export const Toolbar = ({ children, action }: ToolbarProps) => {
   return (
-    <div className="flex items-center gap-7 py-8 px-10">
+    <div className="flex flex-col-reverse lg:flex-row items-center gap-7 py-8 px-10">
       <div className="flex-1">{children}</div>
       {action}
     </div>

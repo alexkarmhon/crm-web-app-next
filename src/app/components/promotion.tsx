@@ -13,7 +13,7 @@ export interface PromotionProps {
 export default function Promotion({ promotion, onDelete }: PromotionProps) {
   return (
     <div className="rounded overflow-hidden bg-gray-100">
-      <div className="relative w-full h-40 bg-gray-300">
+      <div className="relative w-full h-28 lg:h-40 bg-gray-300">
         {promotion.avatar && (
           <Image src={promotion.avatar} alt="promotion avatar" />
         )}

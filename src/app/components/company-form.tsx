@@ -10,6 +10,7 @@ import { useRouter } from 'next/navigation';
 
 import Button from './button';
 import InputField from './input-field';
+import ModalCloseButton from './modal-close-button';
 import SelectCategoryField from './select-category-field';
 import SelectStatusField from './select-status-field';
 
@@ -51,14 +52,6 @@ const CompanyForm = ({ onSubmit }: CompanyFormProps) => {
     const { name, description, date, category, country, status, avatar } =
       values;
 
-    // if (
-    //   !Object.values(CountriesId).includes(
-    //     CountriesId[country as keyof typeof CountriesId],
-    //   )
-    // ) {
-    //   return 'Other';
-    // }
-
     const isInCountriesId = Object.values(CountriesId).includes(
       CountriesId[country as keyof typeof CountriesId],
     );
@@ -83,10 +76,10 @@ const CompanyForm = ({ onSubmit }: CompanyFormProps) => {
 
   return (
     <Formik initialValues={initialValues} onSubmit={handleSubmit}>
-      <Form className="flex flex-col gap-10">
+      <Form className="flex flex-col gap-7 sm:gap-10">
         <p className="mb-0.5 text-xl">Add new company</p>
-        <div className="flex gap-6">
-          <div className="flex flex-col flex-1 gap-5">
+        <div className="sm:flex gap-6">
+          <div className="flex flex-col flex-1 sm:gap-5">
             <LogoUploader
               label="Logo"
               placeholder="Upload photo"
@@ -95,7 +88,7 @@ const CompanyForm = ({ onSubmit }: CompanyFormProps) => {
             <SelectStatusField label="Status" name="status" as="select" />
             <InputField label="Country" placeholder="Country" name="country" />
           </div>
-          <div className="flex flex-col flex-1 gap-5">
+          <div className="flex flex-col flex-1 sm:gap-5">
             <InputField label="Name" placeholder="Name" name="name" />
             <SelectCategoryField label="Category" name="category" as="select" />
             <InputField label="Joined date" type="date" name="date" />

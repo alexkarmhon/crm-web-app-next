@@ -25,13 +25,16 @@ export const CompanyTable = ({}: CompanyTableProps) => {
     staleTime: 10 * 1000,
   });
   return (
-    <div className="py-8 px-10 bg-gray-100">
+    <div className="py-4 px-5 sm:py-8 sm:px-10 bg-gray-100">
       <table className="table-auto w-full border-separate border-spacing-y-2">
         <thead>
           <tr>
             {headers.map((header, i) => (
-              <th key={i} className="pb-5 text-sm font-light text-gray-900">
-                {header}
+              <th
+                key={i}
+                className=" text-xs first-of-type:hidden last-of-type:hidden lg:first-of-type:table-cell lg:last-of-type:table-cell pb-2 sm:text-sm lg:text-base text-center md:pb-5 font-light text-gray-900"
+              >
+                <p>{header}</p>
               </th>
             ))}
           </tr>

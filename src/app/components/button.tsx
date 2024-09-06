@@ -16,7 +16,7 @@ const Button = ({ disabled, customClassName, ...rest }: ButtonProps) => {
       {...rest}
       className={clsx(
         customClassName ??
-          'py-2.5 px-5 bg-gray-900 text-zinc-50 text-base text-center font-medium rounded',
+          'py-2.5 px-5 text-xs bg-gray-900 text-zinc-50 md:text-base text-center font-medium rounded',
         !disabled && 'hover:bg-gray-800 active:bg-gray-950',
         disabled && 'text-zinc-100',
       )}

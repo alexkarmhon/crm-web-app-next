@@ -27,7 +27,6 @@ export default function Page({}: PageProps) {
   if (!companies || !countries) return <Loader />;
 
   const counts = getCountByCountryTitle(countries, companies);
-  console.log(counts);
 
   return (
     <DashboardCard label="Countries of companies">

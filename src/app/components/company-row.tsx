@@ -2,7 +2,6 @@ import React from 'react';
 
 import StatusLabel from '@/app/components/status-label';
 import { Company, getCompany } from '@/lib/api';
-import { useQuery } from '@tanstack/react-query';
 import clsx from 'clsx';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -22,25 +21,22 @@ const CompanyRow = ({ company }: CompanyRowProps) => {
     countryTitle,
   } = company;
 
-  const { data } = useQuery({
-    queryKey: ['companies', company.id],
-    queryFn: () => getCompany(company.id),
-    staleTime: 10 * 1000,
-  });
-
   return (
-    <tr className="h-14 text-center text-gray-900 bg-white">
-      <td className="text-xs font-medium text-blue-700 rounded-l border-l-4 border-blue-700">
+    <tr className="h-10  sm:h-14 text-center text-gray-900 bg-white">
+      <td className="hidden text-s place-content-center font-medium text-blue-700 lg:table-cell lg:rounded-l lg:border-l-4 border-blue-700">
         {categoryTitle}
       </td>
       <td>
-        <Link href={`/companies/${id}`} className="flex place-content-center">
+        <Link
+          href={`/companies/${id}`}
+          className="flex place-content-center text-xs sm:text-sm"
+        >
           <Image
             width={24}
             height={24}
             src={'/images/logotype.png'}
             alt={'company logotype'}
-            className="mr-2"
+            className="hidden sm:block sm:w-[18px] sm:h-[18px] md:w-[24px] md:h-[24px] mr-2"
           />
           {title}
         </Link>
@@ -67,7 +63,7 @@ const CompanyRow = ({ company }: CompanyRowProps) => {
         </div>
       </td>
       <td>{countryTitle}</td>
-      <td className="rounded-r">
+      <td className="hidden lg:table-cell rounded-r">
         {new Date(joinedDate).toLocaleDateString('uk-UA')}
       </td>
     </tr>
