@@ -20,7 +20,7 @@ export const SelectCategoryField: React.FC<SelectCategoryFieldProps> = ({
   return (
     <div className="flex flex-col">
       {label && (
-        <label htmlFor={id} className="mb-2 text-base color-gray-900">
+        <label htmlFor={id} className="mb-1 sm:mb-2 text-base color-gray-900">
           {label}
         </label>
       )}
@@ -28,7 +28,7 @@ export const SelectCategoryField: React.FC<SelectCategoryFieldProps> = ({
         {...rest}
         id={id}
         as={as}
-        className="p-3 h-11 text-sm rounded border border-gray-300 shadow"
+        className="p-1 sm:p-3 h-8 sm:h-11 text-xs sm:text-sm rounded border border-gray-300 shadow"
       >
         <option></option>
         <option value={Categories.Category1}>Category 1</option>
