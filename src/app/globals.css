@@ -49,9 +49,9 @@ body {
 }
 
 .shineEffect {
-  font-size: 2.5rem; /* або text-4xl в залежності від ваших потреб */
-  font-weight: 800; /* font-extrabold */
-  color: #e5e7eb; /* текстовий колір */
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #e5e7eb;
   position: relative;
   display: inline-block;
   background: linear-gradient(

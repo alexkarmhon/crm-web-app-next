@@ -1,26 +1,25 @@
-import React from 'react';
+'use client';
 
+import React, { useState } from 'react';
+
+import AddCompanyButton from '@/app/components/add-company-button';
 import CompanyTable from '@/app/components/company-table';
-import { getCompanies } from '@/lib/api';
-import getQueryClient from '@/lib/utils/getQueryClient';
-import { dehydrate, HydrationBoundary } from '@tanstack/react-query';
+import SearchInput from '@/app/components/search-input';
+import Toolbar from '@/app/components/toolbar';
 
-export interface PageProps {}
+export default function Page() {
+  const [searchTerm, setSearchTerm] = useState('');
 
-export default async function Page({}: PageProps) {
-  const queryClient = getQueryClient();
-
-  await queryClient.prefetchQuery({
-    queryKey: ['companies'],
-    queryFn: () => getCompanies({ cache: 'no-store' }),
-    staleTime: 10 * 1000,
-  });
-
-  const dehydratedState = dehydrate(queryClient);
+  const handleSearchChange = (value: string) => {
+    setSearchTerm(value);
+  };
 
   return (
-    <HydrationBoundary state={dehydratedState}>
-      <CompanyTable />
-    </HydrationBoundary>
+    <>
+      <Toolbar action={<AddCompanyButton />}>
+        <SearchInput onSearchChange={handleSearchChange} />
+      </Toolbar>
+      <CompanyTable searchTerm={searchTerm} />
+    </>
   );
 }

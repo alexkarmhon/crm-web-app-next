@@ -59,7 +59,6 @@ export const CompanyPromotions: React.FC<CompanyPromotionsProps> = ({
     if (promotions?.length === 1) {
       await editCompanyInfo(companyId, { hasPromotions: false });
 
-      // Оновлюємо інформацію про компанію
       queryClient.invalidateQueries({
         queryKey: ['companies', companyId],
       });
@@ -76,7 +75,7 @@ export const CompanyPromotions: React.FC<CompanyPromotionsProps> = ({
   }
 
   return (
-    <div className="grid grid-cols-12 gap-5">
+    <div className="grid grid-cols-1 sm:grid-cols-8 lg:grid-cols-12 gap-5">
       {promotions?.map(promotion => (
         <div key={promotion.id} className="col-span-4">
           <Promotion promotion={promotion} onDelete={onDelete} />
