@@ -3,6 +3,12 @@ module.exports = {
   content: ['./src/**/*.{js,ts,jsx,tsx,mdx}'],
   theme: {
     extend: {
+      backgroundImage: {
+        // 'start-pattern': "url('/images/startpagebackground.webp')",
+        'start-pattern': "url('/images/startpagebackground.webp')",
+        'start-pattern-mob': "url('/images/startpagebackgroundmobile.jpg')",
+        // 'footer-texture': "url('/img/footer-texture.png')",
+      },
       fontFamily: {
         varela: ['Varela Round', 'Arial', 'Helvetica', 'serif'],
       },

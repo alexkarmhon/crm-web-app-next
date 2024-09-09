@@ -23,7 +23,7 @@ const CompanyRow = ({ company }: CompanyRowProps) => {
 
   return (
     <tr className="h-10  sm:h-14 text-center text-gray-900 bg-white">
-      <td className="hidden text-s place-content-center font-medium text-blue-700 lg:table-cell lg:rounded-l lg:border-l-4 border-blue-700">
+      <td className="hidden text-s lg:text-base place-content-center font-medium text-blue-700 lg:table-cell lg:rounded-l lg:border-l-4 border-blue-700">
         {categoryTitle}
       </td>
       <td>

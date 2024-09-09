@@ -28,20 +28,20 @@ export const Sidebar = ({}: SidebarProps) => {
         />
         <ul className="flex mx-auto sm:flex-col">
           <SidebarItem
-            pathname={'/companies'}
-            src={'/icons/squares.svg'}
-            alt={'companies icon'}
-            current={pathname === '/companies'}
-          >
-            Companies
-          </SidebarItem>
-          <SidebarItem
             pathname={'/dashboard'}
             src={'/icons/briefcase.svg'}
             alt={'dashboard icon'}
             current={pathname === '/dashboard'}
           >
             Dashboard
+          </SidebarItem>
+          <SidebarItem
+            pathname={'/companies'}
+            src={'/icons/squares.svg'}
+            alt={'companies icon'}
+            current={pathname === '/companies'}
+          >
+            Companies
           </SidebarItem>
         </ul>
         <button
